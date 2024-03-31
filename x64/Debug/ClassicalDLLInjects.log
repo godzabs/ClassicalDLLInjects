@@ -1,0 +1,16 @@
+﻿  main.c
+C:\Users\analyst\source\repos\ClassicalDLLInjects\ClassicalDLLInjects\main.c(11,54): warning C4133: 'function': incompatible types - from 'const char *' to 'const wchar_t *'
+C:\Users\analyst\source\repos\ClassicalDLLInjects\ClassicalDLLInjects\main.c(15,9): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'SIZE_T'
+C:\Users\analyst\source\repos\ClassicalDLLInjects\ClassicalDLLInjects\main.c(15,9): message : consider using '%lld' in the format string
+C:\Users\analyst\source\repos\ClassicalDLLInjects\ClassicalDLLInjects\main.c(15,9): message : consider using '%Id' in the format string
+C:\Users\analyst\source\repos\ClassicalDLLInjects\ClassicalDLLInjects\main.c(15,9): message : consider using '%I64d' in the format string
+C:\Users\analyst\source\repos\ClassicalDLLInjects\ClassicalDLLInjects\main.c(19,41): warning C4244: 'function': conversion from 'SIZE_T' to 'DWORD', possible loss of data
+C:\Users\analyst\source\repos\ClassicalDLLInjects\ClassicalDLLInjects\main.c(23,9): warning C4477: 'printf' : format string '%ws' requires an argument of type 'unsigned short *', but variadic argument 1 has type 'char *'
+C:\Users\analyst\source\repos\ClassicalDLLInjects\ClassicalDLLInjects\main.c(23,9): message : consider using '%hs' in the format string
+C:\Users\analyst\source\repos\ClassicalDLLInjects\ClassicalDLLInjects\main.c(23,9): message : consider using '%s' in the format string
+C:\Users\analyst\source\repos\ClassicalDLLInjects\ClassicalDLLInjects\main.c(23,9): message : consider using '%Ts' in the format string
+C:\Users\analyst\source\repos\ClassicalDLLInjects\ClassicalDLLInjects\main.c(34,9): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'SIZE_T'
+C:\Users\analyst\source\repos\ClassicalDLLInjects\ClassicalDLLInjects\main.c(34,9): message : consider using '%lld' in the format string
+C:\Users\analyst\source\repos\ClassicalDLLInjects\ClassicalDLLInjects\main.c(34,9): message : consider using '%Id' in the format string
+C:\Users\analyst\source\repos\ClassicalDLLInjects\ClassicalDLLInjects\main.c(34,9): message : consider using '%I64d' in the format string
+  ClassicalDLLInjects.vcxproj -> C:\Users\analyst\source\repos\ClassicalDLLInjects\x64\Debug\ClassicalDLLInjects.exe
