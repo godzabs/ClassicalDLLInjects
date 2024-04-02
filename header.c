@@ -1,5 +1,36 @@
 #include "header.h"
 
+
+HMODULE returnModuleHandle(PWSTR libName) {
+	HMODULE addrToLibrary = NULL;
+	//printf("[+] size of LDR_DATA_TABLE_ENTRY struct = %d\n",sizeof(LIST_ENTRY));
+#ifdef _WIN64
+	PPEB pPEB = (PPEB)__readgsqword(0x60);
+#elif __WIN32
+	PPEB pPEB = (PPEB)__readfsdword(0x30);
+#endif
+	PPEB_LDR_DATA pldrData = pPEB->Ldr;
+	PLIST_ENTRY lHead = &(pldrData->InMemoryOrderModuleList);
+	PLIST_ENTRY lStop = &(pldrData->InMemoryOrderModuleList);
+	while (lHead->Flink != lStop) {
+		PMY_LDR_DATA_TABLE_ENTRY data = (PMY_LDR_DATA_TABLE_ENTRY)((LPBYTE)lHead - sizeof(LIST_ENTRY));
+		//wprintf(L"%s\n",(PWSTR)data->BaseDllName.Buffer);
+		if ((PWSTR)data->BaseDllName.Buffer == NULL) {
+			lHead = lHead->Flink;
+			continue;
+		}
+		else if (0 == _wcsicmp((PWSTR)data->BaseDllName.Buffer, libName)) {
+		//wprintf(L"[+] Found %s !, addr = 0x%p", libName, (PBYTE)data->DllBase);
+			addrToLibrary = (HMODULE)data->DllBase;
+			break;
+		}
+		lHead = lHead->Flink;
+
+	}
+	return addrToLibrary;
+}
+
+
 VOID* returnGetProcAddress(HMODULE lpBaseofDLL, char* functionName) {
 	PVOID addrOfGetProc = NULL;
 	PIMAGE_DOS_HEADER pAddr = (PIMAGE_DOS_HEADER)lpBaseofDLL;

